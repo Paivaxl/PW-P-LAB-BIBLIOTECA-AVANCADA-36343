@@ -1,6 +1,9 @@
 const express = require('express'); 
+const cors = require('cors');
+require('dotenv').config();
+
 const app = express();           
-const port = 4242;
+const port = 3000;
 
 const authorRoutes = require('./routes/author.routes');
 const bookRoutes = require('./routes/book.routes');
@@ -8,6 +11,7 @@ const authRoutes = require('./routes/auth.routes');
 const authenticate = require('./middlewares/auth.middleware');
 
 app.use(express.json());
+app.use(cors());
 
 // Rotas de autenticação (sem proteção)
 app.use('/auth', authRoutes);

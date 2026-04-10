@@ -5,7 +5,6 @@ class AuthController {
     try {
       const { email, password, name } = req.body;
 
-      // Validação básica
       if (!email || !password || !name) {
         return res.status(400).json({
           error: 'Email, password e name são obrigatórios'
@@ -27,7 +26,7 @@ class AuthController {
     try {
       const { email, password } = req.body;
 
-      // Validação básica
+     
       if (!email || !password) {
         return res.status(400).json({
           error: 'Email e password são obrigatórios'
