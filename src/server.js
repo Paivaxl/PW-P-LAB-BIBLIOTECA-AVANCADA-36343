@@ -4,11 +4,17 @@ const port = 4242;
 
 const authorRoutes = require('./routes/author.routes');
 const bookRoutes = require('./routes/book.routes');
+const authRoutes = require('./routes/auth.routes');
+const authenticate = require('./middlewares/auth.middleware');
 
 app.use(express.json());
 
-app.use('/authors', authorRoutes);
-app.use('/books', bookRoutes);
+// Rotas de autenticação (sem proteção)
+app.use('/auth', authRoutes);
+
+// Rotas protegidas
+app.use('/authors', authenticate, authorRoutes);
+app.use('/books', authenticate, bookRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running!');
